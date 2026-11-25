@@ -1,0 +1,579 @@
+/* ==========================================================================
+   1. VARIABLES ET RÉINITIALISATION DE BASE
+   ========================================================================== */
+:root {
+    --bg-color: #f4f7fb;
+    --surface-color: #ffffff;
+    --text-color: #1e293b;
+    --muted-text: #475569;
+    --primary-color: #2563eb;
+    --primary-hover: #1d4ed8;
+    --accent-color: #0ea5e9;
+    --border-color: #e2e8f0;
+    --shadow-sm: 0 4px 12px rgba(15, 23, 42, 0.06);
+    --shadow-md: 0 12px 24px rgba(15, 23, 42, 0.12);
+    --radius: 10px;
+    --transition: 0.3s ease;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+   2. EN-TÊTE ET NAVIGATION
+   ========================================================================== */
+.header {
+    background-color: var(--surface-color);
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    gap: 1rem;
+}
+
+.logo {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    transition: transform var(--transition), color var(--transition);
+}
+
+.logo:hover {
+    color: var(--primary-hover);
+    transform: translateY(-1px);
+}
+
+.nav-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+}
+
+.nav-list a {
+    font-weight: 500;
+    color: var(--muted-text);
+    padding: 0.35rem 0.2rem;
+    position: relative;
+    transition: color var(--transition);
+}
+
+.nav-list a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width var(--transition);
+}
+
+.nav-list a:hover,
+.nav-list a.active {
+    color: var(--primary-color);
+}
+
+.nav-list a:hover::after,
+.nav-list a.active::after {
+    width: 100%;
+}
+
+/* ==========================================================================
+   3. BOUTONS ET SECTIONS GÉNÉRALES
+   ========================================================================== */
+main {
+    flex: 1;
+}
+
+.section {
+    padding: 3.5rem 0;
+}
+
+.section-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: var(--text-color);
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.4rem;
+    border-radius: 8px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: transform var(--transition), box-shadow var(--transition), background-color var(--transition), color var(--transition);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-color);
+    color: #ffffff;
+}
+
+.btn-small {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    background-color: var(--primary-color);
+    color: #ffffff;
+}
+
+.btn-small:hover {
+    background-color: var(--primary-hover);
+}
+
+/* ==========================================================================
+   4. PAGE D'ACCUEIL (HERO SECTION)
+   ========================================================================== */
+.hero {
+    min-height: calc(100vh - 140px);
+    display: flex;
+    align-items: center;
+    padding: 3rem 0;
+    background: linear-gradient(135deg, #eff6ff 0%, #f8fafc 100%);
+}
+
+.hero-content {
+    max-width: 720px;
+}
+
+.hero-subtitle {
+    font-size: 1.05rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+}
+
+.hero-title {
+    font-size: 2.6rem;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+}
+
+.hero-role {
+    font-size: 1.35rem;
+    color: var(--muted-text);
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.hero-tagline {
+    font-size: 1.05rem;
+    color: var(--muted-text);
+    margin-bottom: 1.8rem;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+/* ==========================================================================
+   5. PAGE À PROPOS
+   ========================================================================== */
+.about-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 2.5rem;
+    align-items: start;
+    background-color: var(--surface-color);
+    padding: 2rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+}
+
+.about-image img {
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition);
+}
+
+.about-image img:hover {
+    transform: scale(1.02);
+}
+
+.about-text h2 {
+    font-size: 1.4rem;
+    margin-bottom: 0.6rem;
+}
+
+.about-text h3 {
+    font-size: 1.15rem;
+    margin-top: 1.2rem;
+    margin-bottom: 0.4rem;
+    color: var(--primary-color);
+}
+
+.about-text p {
+    color: var(--muted-text);
+}
+
+/* ==========================================================================
+   6. PAGE COMPÉTENCES
+   ========================================================================== */
+.skills-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.skills-box {
+    background-color: var(--surface-color);
+    padding: 1.8rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+}
+
+.skills-box h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1.2rem;
+}
+
+.skill-item {
+    margin-bottom: 1.1rem;
+}
+
+.skill-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background-color: var(--border-color);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    border-radius: 999px;
+    transition: width 0.6s ease;
+}
+
+.soft-skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.soft-card {
+    background-color: var(--bg-color);
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+
+.soft-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-sm);
+    border-color: var(--primary-color);
+}
+
+.soft-card h3 {
+    font-size: 1rem;
+    margin-bottom: 0.35rem;
+    color: var(--primary-color);
+}
+
+.soft-card p {
+    font-size: 0.9rem;
+    color: var(--muted-text);
+}
+
+/* ==========================================================================
+   7. PAGE PROJETS
+   ========================================================================== */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.75rem;
+}
+
+.project-card {
+    background-color: var(--surface-color);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.project-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-md);
+}
+
+.project-img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    transition: transform var(--transition);
+}
+
+.project-card:hover .project-img {
+    transform: scale(1.03);
+}
+
+.project-body {
+    padding: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.project-body h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.project-body p {
+    color: var(--muted-text);
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    flex: 1;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-bottom: 1.1rem;
+}
+
+.project-tags span {
+    background-color: #eff6ff;
+    color: var(--primary-color);
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.25rem 0.65rem;
+    border-radius: 999px;
+}
+
+/* ==========================================================================
+   8. PAGE CONTACT (FORMULAIRE STATIQUE)
+   ========================================================================== */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+.contact-info,
+.contact-form {
+    background-color: var(--surface-color);
+    padding: 1.8rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+}
+
+.contact-info h2,
+.contact-form h2 {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+}
+
+.contact-info p {
+    color: var(--muted-text);
+    margin-bottom: 1.2rem;
+}
+
+.contact-list li {
+    margin-bottom: 0.75rem;
+    color: var(--text-color);
+}
+
+.contact-list a {
+    color: var(--primary-color);
+    transition: color var(--transition);
+}
+
+.contact-list a:hover {
+    text-decoration: underline;
+    color: var(--primary-hover);
+}
+
+.form-group {
+    margin-bottom: 1.1rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+    font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.7rem 0.85rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: var(--text-color);
+    background-color: #f8fafc;
+    transition: border-color var(--transition), box-shadow var(--transition), background-color var(--transition);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    background-color: #ffffff;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* ==========================================================================
+   9. PIED DE PAGE (FOOTER)
+   ========================================================================== */
+.footer {
+    background-color: #0f172a;
+    color: #cbd5e1;
+    text-align: center;
+    padding: 1.25rem 0;
+    font-size: 0.9rem;
+}
+
+
+/* ==========================================================================
+   10. ANIMATIONS CSS (KEYFRAMES)
+   ========================================================================== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.65s ease both;
+}
+
+.slide-up {
+    animation: slideUp 0.6s ease both;
+}
+
+/* ==========================================================================
+   11. RESPONSIVE (TABLETTES ET MOBILES)
+   ========================================================================== */
+@media (max-width: 850px) {
+    .about-grid,
+    .skills-wrapper,
+    .projects-grid,
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-image {
+        max-width: 240px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 600px) {
+    .nav-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-list {
+        justify-content: center;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .soft-skills-grid {
+        grid-template-columns: 1fr;
+    }
+}
